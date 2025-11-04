@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>🫰 Heartjs.dev – The Modular Full-Stack You’ll Love</title>
+        <meta
+            name="description"
+            content="Heartjs.dev lets you create full-stack TypeScript projects with Hono, TanStack Router, Expo, and AI SDK — without locking your frontend and backend together."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Crimson+Pro:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "DM Sans", sans-serif;
+                background: #fafafa;
+                color: #1a1a1a;
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+
+            header {
+                padding: 32px 0;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 32px;
+                font-weight: 500;
+                color: #1a1a1a;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            /* ---------- HERO SECTION ---------- */
+            .hero {
+                padding: 80px 0 120px;
+                background: #fafafa;
+            }
+
+            .hero-inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 3rem;
+                max-width: 1200px;
+                margin: 0 auto;
+                flex-wrap: wrap;
+            }
+
+            .hero .container {
+                flex: 1;
+                text-align: left;
+            }
+
+            .hero h1 {
+                font-family: "Crimson Pro", serif;
+                font-size: 72px;
+                font-weight: 600;
+                margin-bottom: 24px;
+                line-height: 1.1;
+            }
+
+            .hero .subtitle {
+                font-size: 22px;
+                color: #555;
+                margin-bottom: 48px;
+                max-width: 650px;
+            }
+
+            .cta-section {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+                margin-bottom: 48px;
+            }
+
+            .command-box {
+                background: #1a1a1a;
+                color: #fff;
+                padding: 20px 40px;
+                border-radius: 12px;
+                font-size: 20px;
+                font-family: "Monaco", "Courier New", monospace;
+                display: inline-flex;
+                align-items: center;
+                gap: 16px;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .command-box:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            }
+
+            .copy-btn {
+                background: #333;
+                border: none;
+                color: #fff;
+                padding: 8px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background 0.2s;
+            }
+
+            .copy-btn:hover {
+                background: #444;
+            }
+
+            .copy-btn.copied {
+                background: #22c55e;
+            }
+
+            .alternatives {
+                font-size: 14px;
+                color: #999;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .pm-btn {
+                background: #f0f0f0;
+                border: none;
+                padding: 6px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-family: "Monaco", "Courier New", monospace;
+                font-size: 14px;
+                transition: background 0.2s;
+            }
+
+            .pm-btn:hover {
+                background: #e0e0e0;
+            }
+
+            .pm-btn.active {
+                background: #1a1a1a;
+                color: #fff;
+            }
+
+            /* --- Hero Image (HEART cubes) --- */
+            .hero-image {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .hero-image img {
+                height: 380px;
+                width: auto;
+                object-fit: contain;
+                animation: float 4s ease-in-out infinite;
+                transition: transform 0.3s ease;
+            }
+
+            .hero-image img:hover {
+                transform: scale(1.05) rotate(-2deg);
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            /* ---------- FEATURES / WHY SECTION ---------- */
+            .why {
+                padding: 100px 0;
+                background: #fafafa;
+            }
+
+            .why-content {
+                max-width: 800px;
+                margin: 0 auto;
+                font-size: 18px;
+                color: #444;
+                line-height: 1.8;
+            }
+
+            .why-content ul {
+                margin: 24px 0;
+                padding-left: 24px;
+                list-style: none;
+            }
+
+            .why-content li {
+                margin-bottom: 12px;
+            }
+
+            .why-content li::before {
+                content: "❤️";
+                margin-right: 8px;
+            }
+
+            .why-content strong {
+                color: #111;
+            }
+
+            .why-content em {
+                color: #666;
+                font-style: italic;
+            }
+
+            .features {
+                padding: 80px 0;
+                background: #fff;
+            }
+
+            .section-title {
+                font-family: "Crimson Pro", serif;
+                text-align: center;
+                font-size: 56px;
+                font-weight: 600;
+                margin-bottom: 64px;
+            }
+
+            .cards-container {
+                max-width: 900px;
+                margin: 0 auto;
+                perspective: 1000px;
+            }
+
+            .tech-card {
+                background: #fafafa;
+                border-radius: 24px;
+                padding: 48px;
+                margin-bottom: 24px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .tech-card:hover {
+                transform: translateY(-8px) rotateX(2deg);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            }
+
+            .tech-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+            }
+
+            .tech-icon {
+                font-size: 56px;
+                margin-bottom: 20px;
+            }
+
+            .tech-name {
+                font-family: "Crimson Pro", serif;
+                font-size: 40px;
+                font-weight: 600;
+                margin-bottom: 16px;
+            }
+
+            .tech-desc {
+                font-size: 18px;
+                color: #666;
+                margin-bottom: 16px;
+                line-height: 1.7;
+            }
+
+            .tech-features {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .feature-tag {
+                background: #fff;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 14px;
+                color: #1a1a1a;
+                font-weight: 500;
+                border: 1px solid #e0e0e0;
+            }
+
+            .final-cta {
+                padding: 80px 0;
+                text-align: center;
+                background: #fff;
+            }
+
+            .final-cta h2 {
+                font-family: "Crimson Pro", serif;
+                font-size: 52px;
+                font-weight: 600;
+                margin-bottom: 32px;
+            }
+
+            footer {
+                padding: 48px 0;
+                text-align: center;
+                color: #999;
+                font-size: 14px;
+            }
+
+            footer a {
+                color: #666;
+                text-decoration: none;
+                margin: 0 16px;
+                transition: color 0.2s;
+            }
+
+            footer a:hover {
+                color: #1a1a1a;
+            }
+
+            /* ---------- RESPONSIVE ---------- */
+            @media (max-width: 900px) {
+                .hero {
+                    padding: 60px 0 80px;
+                }
+
+                .hero-inner {
+                    flex-direction: column-reverse;
+                    text-align: center;
+                }
+
+                .hero .container {
+                    align-items: center;
+                    padding: 0px;
+                }
+
+                .hero-image img {
+                    height: 260px;
+                }
+
+                .hero h1 {
+                    font-size: 48px;
+                    margin: 24px;
+                }
+
+                .hero .subtitle {
+                    font-size: 18px;
+                    margin: 24px;
+                }
+
+                .command-box {
+                    font-size: 16px;
+                    padding: 16px 24px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .cta-section {
+                    align-items: center;
+                }
+
+                .why,
+                .features,
+                .final-cta {
+                    padding: 60px 0;
+                }
+
+                .section-title {
+                    font-size: 40px;
+                    margin-bottom: 48px;
+                }
+
+                .final-cta h2 {
+                    font-size: 40px;
+                }
+
+                .tech-card {
+                    padding: 32px;
+                }
+
+                .tech-name {
+                    font-size: 32px;
+                }
+
+                .alternatives {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+            }
+
+            /* Added for better mobile phone responsiveness */
+            @media (max-width: 480px) {
+                body {
+                    line-height: 1.5;
+                }
+
+                .hero h1 {
+                    font-size: 40px;
+                }
+
+                .hero .subtitle {
+                    font-size: 16px;
+                    margin-bottom: 40px;
+                }
+
+                .hero-image img {
+                    height: 200px;
+                }
+
+                .command-box {
+                    font-size: 14px;
+                    padding: 14px 20px;
+                    gap: 12px;
+                }
+
+                .section-title,
+                .final-cta h2 {
+                    font-size: 32px;
+                }
+
+                .logo {
+                    font-size: 28px;
+                }
+
+                .tech-card {
+                    padding: 24px;
+                }
+
+                .tech-icon {
+                    font-size: 48px;
+                }
+
+                .tech-name {
+                    font-size: 28px;
+                }
+
+                .tech-desc {
+                    font-size: 16px;
+                }
+
+                .why-content {
+                    font-size: 16px;
+                }
+
+                footer a {
+                    margin: 0 12px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div class="container">
+                <a href="#" class="logo">🫰 Heartjs.dev</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-inner">
+                    <div class="container">
+                        <h1 id="typer">Light Weight</h1>
+                        <p class="subtitle">
+                            Heartjs.dev is a modular TypeScript starter that
+                            runs
+                            <br />
+                            <strong
+                                >Hono, Expo, AI SDK, React, and TanStack
+                                Router</strong
+                            >
+                            together without tying your frontend and backend
+                            into one runtime.
+                        </p>
+
+                        <div class="cta-section">
+                            <div class="command-box" onclick="copyCommand()">
+                                <span id="command"
+                                    >npm create heartjs@latest</span
+                                >
+                                <button class="copy-btn" id="copyBtn">
+                                    Copy
+                                </button>
+                            </div>
+                            <div class="alternatives">
+                                <span>Also works with</span>
+                                <button
+                                    class="pm-btn active"
+                                    onclick="changePackageManager('npm')"
+                                >
+                                    npm
+                                </button>
+                                <button
+                                    class="pm-btn"
+                                    onclick="changePackageManager('yarn')"
+                                >
+                                    yarn
+                                </button>
+                                <button
+                                    class="pm-btn"
+                                    onclick="changePackageManager('pnpm')"
+                                >
+                                    pnpm
+                                </button>
+                                <button
+                                    class="pm-btn"
+                                    onclick="changePackageManager('bun')"
+                                >
+                                    bun
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-image">
+                        <img src="./heart.png" alt="HEART cubes" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="container">
+                    <h2 class="section-title">What's Inside</h2>
+                    <div class="cards-container">
+                        <div class="tech-card">
+                            <div class="tech-icon">🔥</div>
+                            <h3 class="tech-name">Hono</h3>
+                            <p class="tech-desc">
+                                Edge-ready, ultrafast web framework for APIs and
+                                microservices. Hono powers your backend and runs
+                                everywhere Node, Bun, Deno, or Cloudflare. The
+                                Heart CLI calls <code>hono init</code> directly,
+                                keeping setup simple and modular.
+                            </p>
+                            <div class="tech-features">
+                                <span class="feature-tag"
+                                    >⚡ Fast & Lightweight</span
+                                >
+                                <span class="feature-tag">🌐 Edge Ready</span>
+                                <span class="feature-tag">🔗 Hono RPC</span>
+                                <span class="feature-tag">📦 Zero Bloat</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="tech-icon">⚛️</div>
+                            <h3 class="tech-name">React + TanStack Router</h3>
+                            <p class="tech-desc">
+                                React powered by Vite and TanStack Router for
+                                typed routing, loaders, and actions. Includes
+                                <strong>shadcn/ui</strong> out of the box for a
+                                beautiful design system that’s production-ready
+                                and fully typed. The CLI runs
+                                <code>tsrouter init</code> behind the scenes.
+                            </p>
+                            <div class="tech-features">
+                                <span class="feature-tag">🎯 Type Safe</span>
+                                <span class="feature-tag">⚡ Vite Builds</span>
+                                <span class="feature-tag">🎨 shadcn/ui</span>
+                                <span class="feature-tag"
+                                    >🧭 Modern Routing</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="tech-icon">📱</div>
+                            <h3 class="tech-name">
+                                Expo + React Native Reusables
+                            </h3>
+                            <p class="tech-desc">
+                                Cross-platform apps made simple. Expo comes
+                                pre-integrated with
+                                <code>react native reusables</code> unstyled,
+                                accessible primitives that make UI consistency
+                                across platforms effortless. Heartjs runs
+                                <code>reactnativereusables init</code> for you.
+                            </p>
+                            <div class="tech-features">
+                                <span class="feature-tag"
+                                    >📱 Cross Platform</span
+                                >
+                                <span class="feature-tag">♿ Accessible</span>
+                                <span class="feature-tag"
+                                    >🎨 Reusable Components</span
+                                >
+                                <span class="feature-tag"
+                                    >🚀 Fast Dev Cycles</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="tech-icon">🤖</div>
+                            <h3 class="tech-name">AI SDK</h3>
+                            <p class="tech-desc">
+                                Optional, but powerful. Integrate AI quickly
+                                using Vercel’s AI SDK. Stream responses, handle
+                                embeddings, and connect to OpenAI or Anthropic
+                                instantly. Type-safe hooks included in the
+                                <code>common/</code> package.
+                            </p>
+                            <div class="tech-features">
+                                <span class="feature-tag"
+                                    >🧠 Multiple Providers</span
+                                >
+                                <span class="feature-tag"
+                                    >🌊 Streaming Support</span
+                                >
+                                <span class="feature-tag">💬 Chat Ready</span>
+                                <span class="feature-tag">🔌 Typed Hooks</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="tech-icon">🐳</div>
+                            <h3 class="tech-name">Docker Ready</h3>
+                            <p class="tech-desc">
+                                Need a database? The
+                                <code>create-heartjs</code> CLI can set up your
+                                choice of database automatically with Docker
+                                Compose. Spin up PostgreSQL, MySQL, MongoDB, or
+                                Redis in seconds and also environment variables
+                                are wired up in your Hono API out of the box. No
+                                manual config, just
+                                <strong>run & build</strong>.
+                            </p>
+                            <div class="tech-features">
+                                <span class="feature-tag">🐘 PostgreSQL</span>
+                                <span class="feature-tag">🐬 MySQL</span>
+                                <span class="feature-tag">🍃 MongoDB</span>
+                                <span class="feature-tag">⚡ Redis</span>
+                                <span class="feature-tag"
+                                    >📦 Docker Compose</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="why">
+                <div class="container">
+                    <h2 class="section-title">Why Heart.js?</h2>
+                    <div class="why-content">
+                        <p>
+                            I’ve always loved full-stack frameworks like
+                            SvelteKit and Next.js and they’re amazing for
+                            building fast, connected apps. But when it comes
+                            time to add a <strong>mobile app</strong> or an
+                            <strong>external API</strong>, things start to get
+                            messy. The frontend and backend are too intertwined,
+                            and separating them feels like un-weaving a sweater.
+                        </p>
+                        <p>
+                            <strong>Heart.js</strong> is my answer to that. A
+                            clean separation where each layer can still share
+                            code, types, and structure without getting in each
+                            other’s way. One command sets up:
+                        </p>
+                        <ul>
+                            <li>
+                                🧩 A <strong>Hono</strong> backend that runs
+                                anywhere with RPC for type-safe APIs
+                            </li>
+                            <li>
+                                📱 An <strong>Expo</strong> app powered by
+                                react-native-reusables
+                            </li>
+                            <li>
+                                🤖 Optional <strong>AI SDK</strong> integration
+                                when you need intelligent features
+                            </li>
+                            <li>
+                                ⚛️ A
+                                <strong>React + TanStack Router</strong>
+                                frontend built with Vite and shadcn/ui
+                            </li>
+
+                            <li>
+                                🐳 And easy Docker setup for your databases when
+                                you’re ready to scale
+                            </li>
+                        </ul>
+                        <p>
+                            No magic, no lock-in — just tools that play well
+                            together.
+                            <br />
+                            Because I wanted a stack that feels
+                            <em>modular</em>, <em>type-safe</em>, and
+                            <em>fun</em> to build with again.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="final-cta">
+                <div class="container">
+                    <h2>Compose Your Stack. Keep It Yours.</h2>
+                    <div class="cta-sectiona">
+                        <div class="command-box" onclick="copyCommand()">
+                            <span id="command2">npm create heartjs@latest</span>
+                            <button class="copy-btn" id="copyBtn2">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>
+                    Built with 🫰 by
+                    <a href="https://anirudhisonline.com" target="_blank"
+                        >anirudhisonline</a
+                    >
+                </p>
+                <div style="margin-top: 16px">
+                    <a
+                        href="https://github.com/heartjsdev/create-heartjs"
+                        target="_blank"
+                        >GitHub</a
+                    >
+                    <a
+                        href="https://www.npmjs.com/package/create-heartjs"
+                        target="_blank"
+                        >npm</a
+                    >
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const typer = document.getElementById("typer");
+            const words = [
+                "Light Weight",
+                "Super Fast",
+                "Cross Platform",
+                "Model Agnostic",
+                "AI Ready",
+                "Huge Ecosystem",
+                "Platform Agnostic",
+                "Type Safe",
+            ];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let deleting = false;
+            let delay = 100;
+
+            // Fix width to longest word
+            const longest = words.reduce((a, b) =>
+                a.length > b.length ? a : b,
+            );
+            typer.style.display = "inline-block";
+            typer.style.minWidth = `${longest.length}ch`;
+
+            function type() {
+                const currentWord = words[wordIndex];
+
+                if (!deleting) {
+                    typer.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+
+                    if (charIndex === currentWord.length) {
+                        deleting = true;
+                        delay = 2000;
+                    } else {
+                        delay = 100;
+                    }
+                } else {
+                    typer.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+
+                    if (charIndex === 0) {
+                        deleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                        delay = 500;
+                    } else {
+                        delay = 50;
+                    }
+                }
+
+                setTimeout(type, delay);
+            }
+
+            type();
+        </script>
+
+        <style>
+            #typer {
+                white-space: nowrap;
+                overflow: hidden;
+
+                /* 👇 Prevent layout reflow */
+                display: inline-block;
+                height: 1.2em; /* locks vertical space */
+                vertical-align: bottom;
+            }
+        </style>
+
+        <script>
+            let currentPM = "npm";
+            const commands = {
+                npm: "npm create heartjs@latest",
+                yarn: "yarn create heartjs",
+                pnpm: "pnpm create heartjs@latest",
+                bun: "bun create heartjs@latest",
+            };
+
+            function changePackageManager(pm) {
+                currentPM = pm;
+                document.getElementById("command").textContent = commands[pm];
+                document.getElementById("command2").textContent = commands[pm];
+                document.querySelectorAll(".pm-btn").forEach((btn) => {
+                    btn.classList.remove("active");
+                });
+                event.target.classList.add("active");
+            }
+
+            function copyCommand() {
+                const command = commands[currentPM];
+                navigator.clipboard.writeText(command).then(() => {
+                    const btns = document.querySelectorAll(".copy-btn");
+                    btns.forEach((btn) => {
+                        btn.textContent = "Copied!";
+                        btn.classList.add("copied");
+                        setTimeout(() => {
+                            btn.textContent = "Copy";
+                            btn.classList.remove("copied");
+                        }, 2000);
+                    });
+                });
+            }
+        </script>
+    </body>
+</html>
