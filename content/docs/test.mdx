@@ -1,0 +1,78 @@
+---
+title: Installation
+description: Create a new Heart.js project with your favorite stack in seconds.
+icon: Download
+---
+
+Get started by running a single command. The interactive CLI will guide you through selecting the components you need for your project.
+
+## Requirements
+
+Before you begin, make sure you have the following installed:
+
+-   **Node.js**: Version 18 or higher.
+-   **Docker**: Optional, but required if you plan to use the integrated database services.
+
+## Create a New Project
+
+You can create a new Heart.js project using your preferred package manager. The CLI automatically detects and uses the package manager you invoke it with.
+
+```bash
+# npm
+npm create heartjs@latest
+
+# yarn
+yarn create heartjs
+
+# pnpm
+pnpm create heartjs@latest
+
+# bun
+bun create heartjs@latest
+```
+
+### Interactive Setup
+
+After running the command, the CLI will prompt you to configure your project. You can name your project and select the components you want to include.
+
+```bash
+$ npm create heartjs@latest
+
+🫰 Welcome to heartjs!
+
+? What is your project name? awesome-app
+? What do you want to set up?
+  ◉ Hono API
+  ◉ Expo App
+  ◉ Web App (TanStack Router + shadcn)
+  ◉ AI SDK
+
+🚀 Setting up your heartjs project...
+
+✓ Hono API created at awesome-app-api
+✓ Expo app created at awesome-app-app
+✓ Web app created at awesome-app-web
+✓ Docker Compose file created successfully
+
+✨ Your heartjs project is ready!
+
+Next steps:
+  cd awesome-app
+  cd awesome-app-api && npm run dev
+  cd awesome-app-app && npm start
+  cd awesome-app-web && npm run dev
+
+🫰 Happy coding!
+```
+
+## Project Structure
+
+Once the setup is complete, your project will have a clear, multi-package structure. Each part of your application lives in its own directory:
+
+```
+awesome-app/
+├── awesome-app-api/      # Hono API (if selected)
+├── awesome-app-app/      # Expo App (if selected)
+├── awesome-app-web/      # Web App (if selected)
+└── docker-compose.yml    # Docker services (if configured)
+```
